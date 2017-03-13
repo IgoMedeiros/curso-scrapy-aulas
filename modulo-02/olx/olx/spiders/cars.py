@@ -20,4 +20,15 @@ class CarsSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse_detail)
 
     def parse_detail(self, response):
-        self.log(response.url)
+        title = response.xpath('//title/text()').extract_first()
+        year = response.xpath(
+            '//span[contains(text(), "Ano")]/following-sibling::strong/a/@title'
+        ).extract_first()
+        ports = response.xpath(
+            '//span[contains(text(), "Portas")]/following-sibling::strong/text()'
+        ).extract_first()
+        yield {
+            'title': title,
+            'year': year,
+            'ports': ports,
+        }
