@@ -17,4 +17,15 @@ class CourseraSpider(scrapy.Spider):
             )
     
     def parse_category(self, response):
-        self.log(response.xpath("//title/text()").extract_first())
+        courses = response.xpath("//a[contains(@class, 'rc-OfferingCard')]")
+        for course in courses:
+            course_url = course.xpath("./@href").extract_first()
+            yield scrapy.Request(
+                url='https://www.coursera.org%s' % course_url,
+                callback=self.parse_course
+            )
+        
+    def parse_course(self, response):
+        yield {
+            'title': response.xpath("//title/text()").extract_first()
+        }
