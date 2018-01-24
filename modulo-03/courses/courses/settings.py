@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'courses.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'courses (+http://www.yourdomain.com)'
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -41,7 +41,7 @@ ROBOTSTXT_OBEY = True
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-   'Accept-Language': 'pt-br',
+   'Accept-Language': 'pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3',
 }
 
 # Enable or disable spider middlewares
